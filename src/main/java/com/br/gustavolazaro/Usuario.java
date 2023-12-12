@@ -87,7 +87,6 @@ public class Usuario implements Runnable {
 
             if (reservarLivro(recursoCompartilhado)) {
                 addLivroReservado(recursoCompartilhado.getLivro());
-                System.out.println(getNome() + " reservou o livro: " + recursoCompartilhado.getLivro().getTitulo());
 
                 // Aguarda por um período (2 segundos) simulando o tempo que o usuário possui o livro
                 try {
