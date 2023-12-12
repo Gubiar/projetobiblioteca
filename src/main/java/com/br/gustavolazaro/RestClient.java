@@ -16,7 +16,7 @@ import static com.br.gustavolazaro.Biblioteca.QTD_LIVROS;
 
 public class RestClient {
 
-    private final String REST_URI = "https://server-gubiar.vercel.app/livros?qtd=" + QTD_LIVROS;
+    private final String REST_URI = "https://server-17ah10xu3-gubiar.vercel.app/livros?qtd=" + QTD_LIVROS;
 
     private Client client = ClientBuilder.newClient();
 

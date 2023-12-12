@@ -5,9 +5,9 @@ import java.util.List;
 public class Biblioteca {
     private List<Compartilhado> livros;
     private List<Usuario> usuarios;
-    public static final int QTD_LIVROS = 10;
-    public static final int QTD_USUARIOS = 2;
-    public static final int LIMITE_DE_LIVROS_POR_USUARIO = 10;
+    public static final int QTD_LIVROS = 100;
+    public static final int QTD_USUARIOS = 50;
+    public static final int LIMITE_DE_LIVROS_POR_USUARIO = 20;
 
 
     public Biblioteca() {

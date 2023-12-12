@@ -4,7 +4,6 @@ package com.br.gustavolazaro;
 public class Livro {
     private String titulo;
     private String autor;
-
     private Boolean isReservado;
 
     public Livro(String titulo, String autor) {
