@@ -5,7 +5,7 @@ import java.util.List;
 public class Biblioteca {
     private List<Compartilhado> livros;
     private List<Usuario> usuarios;
-    public static final int QTD_LIVROS = 2;
+    public static final int QTD_LIVROS = 10;
     public static final int QTD_USUARIOS = 2;
     public static final int LIMITE_DE_LIVROS_POR_USUARIO = 10;
 
@@ -17,9 +17,8 @@ public class Biblioteca {
     }
 
     private void inicializarLivros() {
-        for (int i = 0; i < QTD_LIVROS; i++) {
-            livros.add(new Compartilhado("Livro " + i, "Autor " + i));
-        }
+        RestClient client = new RestClient();
+        setLivros(client.getLivrosFromAPI());
     }
 
     private void inicializarUsuarios(Middleware middleware) {
