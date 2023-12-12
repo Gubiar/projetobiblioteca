@@ -2,31 +2,29 @@ package com.br.gustavolazaro;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 public class Biblioteca {
     private List<Compartilhado> livros;
     private List<Usuario> usuarios;
+    public static final int QTD_LIVROS = 2;
+    public static final int QTD_USUARIOS = 2;
+    public static final int LIMITE_DE_LIVROS_POR_USUARIO = 10;
 
-    private static final int QTD_LIVROS = 10;
-    private static final int QTD_USUARIOS = 3;
 
     public Biblioteca() {
         this.livros = new ArrayList<>();
         this.usuarios = new ArrayList<>();
-        inicializarLivros(QTD_LIVROS);
-        inicializarUsuarios(QTD_USUARIOS);
+        inicializarLivros();
     }
 
-    private void inicializarLivros(int quantidade) {
-        for (int i = 0; i < quantidade; i++) {
+    private void inicializarLivros() {
+        for (int i = 0; i < QTD_LIVROS; i++) {
             livros.add(new Compartilhado("Livro " + i, "Autor " + i));
         }
     }
 
-    private void inicializarUsuarios(int quantidade) {
-        for (int i = 0; i < quantidade; i++) {
-            usuarios.add(new Usuario(i, "Usuario " + i));
+    private void inicializarUsuarios(Middleware middleware) {
+        for (int i = 0; i < QTD_USUARIOS; i++) {
+            usuarios.add(new Usuario(i, "Usuario " + i, middleware));
         }
     }
 
@@ -48,35 +46,9 @@ public class Biblioteca {
 
     public void executarSistema() {
         Middleware middleware = new Middleware(QTD_USUARIOS, this);
-
+        inicializarUsuarios(middleware);
         // Inicia os hosts (usuários) concorrentes
         middleware.iniciarHosts(usuarios);
-
-        // Simula algumas operações no sistema
-        realizarOperacoes();
-    }
-
-    private void realizarOperacoes() {
-        // Simula algumas operações de reserva e devolução
-        Random random = new Random();
-
-        for (int i = 0; i < 5; i++) {
-            Usuario usuario = usuarios.get(random.nextInt(usuarios.size()));
-            Compartilhado compartilhado = livros.get(random.nextInt(livros.size()));
-
-            // Realiza a tentativa de reserva
-            usuario.reservarLivro(compartilhado);
-
-            // Aguarda por um curto período para simular a posse do livro
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            // Realiza a devolução
-            usuario.devolverLivro(compartilhado);
-        }
     }
 
     public static void main(String[] args) {

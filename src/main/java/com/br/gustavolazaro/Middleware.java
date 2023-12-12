@@ -23,9 +23,8 @@ public class Middleware {
     }
 
     public void iniciarHosts(List<Usuario> usuarios) {
-        for (int i = 0; i < usuarios.size(); i++) {
-            Usuario usuario = usuarios.get(i);
-            Future<?> tarefa = executorService.submit(new Host(usuario, this));
+        for (Usuario usuario : usuarios) {
+            Future<?> tarefa = executorService.submit(usuario);
             tarefasUsuarios.put(usuario, tarefa);
         }
     }
